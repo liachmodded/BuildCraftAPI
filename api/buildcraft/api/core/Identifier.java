@@ -172,18 +172,27 @@ public abstract class Identifier {
             this.uniqueId = uniqueId;
         }
 
+        private Entity get(World world) {
+            for (Entity entity : world.loadedEntityList) {
+                if (entity.getPersistentID().equals(uniqueId)) {
+                    return entity;
+                }
+            }
+            return null;
+        }
+
         @Override
         public Entity getByIdentifier(MinecraftServer server) {
             World world = server.worldServerForDimension(dimId);
             if (world == null || world.provider.getDimensionId() != dimId) return null;
-            return world.loadedEntityList.stream().filter(e -> e.getPersistentID().equals(uniqueId)).findFirst().orElse(null);
+            return get(world);
         }
 
         @Override
         public boolean isLoaded(MinecraftServer server) {
             World world = server.worldServerForDimension(dimId);
             if (world == null || world.provider.getDimensionId() != dimId) return false;
-            return world.loadedEntityList.stream().filter(e -> e.getPersistentID().equals(uniqueId)).findFirst().orElse(null) != null;
+            return get(world) != null;
         }
 
         @Override
@@ -191,7 +200,7 @@ public abstract class Identifier {
         public Entity getByIdentifierClient() {
             World world = Minecraft.getMinecraft().theWorld;
             if (world == null || world.provider.getDimensionId() != dimId) return null;
-            return world.loadedEntityList.stream().filter(e -> e.getPersistentID().equals(uniqueId)).findFirst().orElse(null);
+            return get(world);
         }
 
         @Override
@@ -199,7 +208,7 @@ public abstract class Identifier {
         public boolean isLoadedClient() {
             World world = Minecraft.getMinecraft().theWorld;
             if (world == null || world.provider.getDimensionId() != dimId) return false;
-            return world.loadedEntityList.stream().filter(e -> e.getPersistentID().equals(uniqueId)).findFirst().orElse(null) != null;
+            return get(world) != null;
         }
 
         @Override
