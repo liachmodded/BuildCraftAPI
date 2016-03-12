@@ -32,7 +32,7 @@ targetCompatibility = JavaVersion.VERSION_1_6
 minecraft {
     version = config.mc_version + "-" + config.forge_version
     runDir = "run"
-    
+
     // the mappings can be changed at any time, and must be in the following format.
     // snapshot_YYYYMMDD   snapshot are built nightly.
     // stable_#            stables are built at the discretion of the MCP team.
