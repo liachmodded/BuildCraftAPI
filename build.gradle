@@ -24,7 +24,7 @@ configFile.withReader {
 
 version = config.mod_version
 group= "com.mod-buildcraft.api" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "buildcraft" // the name that all artifacts will use as a base. artifacts names follow this pattern: [baseName]-[appendix]-[version]-[classifier].[extension]
+archivesBaseName = "buildcraft-api" // the name that all artifacts will use as a base. artifacts names follow this pattern: [baseName]-[appendix]-[version]-[classifier].[extension]
 
 sourceCompatibility = JavaVersion.VERSION_1_6
 targetCompatibility = JavaVersion.VERSION_1_6
@@ -43,16 +43,11 @@ minecraft {
 }
 
 sourceSets {
-    api {
+    main {
         java {
             srcDir "api"
         }
     }
-}
-
-task apiJar(type: Jar) {
-    from sourceSets.api.output
-    classifier = "api"
 }
 
 build.dependsOn apiJar
