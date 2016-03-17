@@ -7,6 +7,7 @@ package buildcraft.api.transport.pluggable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.EnumFacing;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -47,12 +48,12 @@ public abstract class PipePluggable implements INBTStoreable, ISerializable {
     public abstract AxisAlignedBB getBoundingBox(EnumFacing side);
 
     @SideOnly(Side.CLIENT)
-    public abstract IPipePluggableStaticRenderer getRenderer();
-
-    @SideOnly(Side.CLIENT)
     public IPipePluggableDynamicRenderer getDynamicRenderer() {
         return null;
     }
+
+    @SideOnly(Side.CLIENT)
+    public abstract PluggableModelKeyCutout<?> getModelRenderKey(EnumFacing side);
 
     public boolean requiresRenderUpdate(PipePluggable old) {
         return true;
