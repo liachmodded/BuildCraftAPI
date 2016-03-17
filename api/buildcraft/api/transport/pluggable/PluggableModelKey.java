@@ -4,20 +4,27 @@ import java.util.Arrays;
 import java.util.Objects;
 
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumWorldBlockLayer;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public abstract class PluggableModelKeyTranslucent<K extends PluggableModelKeyTranslucent<K>> {
-    public final PluggableModelBaker.Translucent<K> baker;
+public abstract class PluggableModelKey<K extends PluggableModelKey<K>> {
+    public final EnumWorldBlockLayer layer;
+    public final IPluggableModelBaker<K> baker;
     public final EnumFacing side;
     private final int hash;
 
-    public PluggableModelKeyTranslucent(PluggableModelBaker.Translucent<K> baker, EnumFacing side) {
+    public PluggableModelKey(EnumWorldBlockLayer layer, IPluggableModelBaker<K> baker, EnumFacing side) {
+        this.layer = layer;
+        if (layer != EnumWorldBlockLayer.CUTOUT && layer != EnumWorldBlockLayer.TRANSLUCENT) {
+            throw new IllegalArgumentException("Can only use CUTOUT or TRANSLUCENT at the moment (was " + layer + ")");
+        }
         if (baker == null) throw new NullPointerException("baker");
         this.baker = baker;
         this.side = side;
+        /* Don't inclue the block layer in the hash code as there are different caches for cutout and translucent */
         this.hash = Arrays.hashCode(new int[] { System.identityHashCode(baker), Objects.hashCode(side) });
     }
 
@@ -26,7 +33,7 @@ public abstract class PluggableModelKeyTranslucent<K extends PluggableModelKeyTr
         if (obj == this) return true;
         if (obj == null) return false;
         if (getClass() != obj.getClass()) return false;
-        PluggableModelKeyTranslucent<?> other = (PluggableModelKeyTranslucent<?>) obj;
+        PluggableModelKey<?> other = (PluggableModelKey<?>) obj;
         if (baker != other.baker) return false;
         if (side != other.side) return false;
         return true;
