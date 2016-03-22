@@ -9,7 +9,6 @@ import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@SideOnly(Side.CLIENT)
 public abstract class PluggableModelKey<K extends PluggableModelKey<K>> {
     public final EnumWorldBlockLayer layer;
     public final IPluggableModelBaker<K> baker;
