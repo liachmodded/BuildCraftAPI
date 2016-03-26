@@ -10,8 +10,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import buildcraft.api.core.BCLog;
 
@@ -159,19 +162,19 @@ public final class StatementManager {
         return null;
     }
 
-    // /**
-    // * Generally, this function should be called by every mod implementing
-    // * the Statements API ***as a container*** (that is, adding its own gates)
-    // * on the client side from a given Item of choice.
-    // */
-    // @SideOnly(Side.CLIENT)
-    // public static void registerIcons(TextureAtlasSpriteRegister register) {
-    // for (IStatement statement : statements.values()) {
-    // statement.registerIcons(register);
-    // }
-    //
-    // for (Class<? extends IStatementParameter> parameter : parameters.values()) {
-    // createParameter(parameter).registerIcons(register);
-    // }
-    // }
+    /**
+     * Generally, this function should be called by every mod implementing
+     * the Statements API ***as a container*** (that is, adding its own gates)
+     * on the client side from a given Item of choice.
+     */
+    @SideOnly(Side.CLIENT)
+    public static void registerIcons(TextureMap register) {
+        for (IStatement statement : statements.values()) {
+            statement.registerIcons(register);
+        }
+
+        for (Class<? extends IStatementParameter> parameter : parameters.values()) {
+            createParameter(parameter).registerIcons(register);
+        }
+    }
 }
