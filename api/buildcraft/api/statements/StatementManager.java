@@ -4,8 +4,9 @@
  * should be located as "LICENSE.API" in the BuildCraft source code distribution. */
 package buildcraft.api.statements;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -54,93 +55,57 @@ public final class StatementManager {
     }
 
     public static List<ITriggerExternal> getExternalTriggers(EnumFacing side, TileEntity entity) {
-        List<ITriggerExternal> result;
-
         if (entity instanceof IOverrideDefaultStatements) {
-            result = ((IOverrideDefaultStatements) entity).overrideTriggers();
+            List<ITriggerExternal> result = ((IOverrideDefaultStatements) entity).overrideTriggers();
             if (result != null) {
                 return result;
             }
         }
 
-        result = new LinkedList<ITriggerExternal>();
+        LinkedHashSet<ITriggerExternal> triggers = new LinkedHashSet<ITriggerExternal>();
 
         for (ITriggerProvider provider : triggerProviders) {
-            Collection<ITriggerExternal> toAdd = provider.getExternalTriggers(side, entity);
-
-            if (toAdd != null) {
-                for (ITriggerExternal t : toAdd) {
-                    if (!result.contains(t)) {
-                        result.add(t);
-                    }
-                }
-            }
+            provider.addExternalTriggers(triggers, side, entity);
         }
 
-        return result;
+        return new ArrayList<ITriggerExternal>(triggers);
     }
 
     public static List<IActionExternal> getExternalActions(EnumFacing side, TileEntity entity) {
-        List<IActionExternal> result = new LinkedList<IActionExternal>();
-
         if (entity instanceof IOverrideDefaultStatements) {
-            result = ((IOverrideDefaultStatements) entity).overrideActions();
+            List<IActionExternal> result = ((IOverrideDefaultStatements) entity).overrideActions();
             if (result != null) {
                 return result;
             }
         }
 
-        result = new LinkedList<IActionExternal>();
+        LinkedHashSet<IActionExternal> actions = new LinkedHashSet<IActionExternal>();
 
         for (IActionProvider provider : actionProviders) {
-            Collection<IActionExternal> toAdd = provider.getExternalActions(side, entity);
-
-            if (toAdd != null) {
-                for (IActionExternal t : toAdd) {
-                    if (!result.contains(t)) {
-                        result.add(t);
-                    }
-                }
-            }
+            provider.addExternalActions(actions, side, entity);
         }
 
-        return result;
+        return new ArrayList<IActionExternal>(actions);
     }
 
     public static List<ITriggerInternal> getInternalTriggers(IStatementContainer container) {
-        List<ITriggerInternal> result = new LinkedList<ITriggerInternal>();
+        LinkedHashSet<ITriggerInternal> triggers = new LinkedHashSet<ITriggerInternal>();
 
         for (ITriggerProvider provider : triggerProviders) {
-            Collection<ITriggerInternal> toAdd = provider.getInternalTriggers(container);
-
-            if (toAdd != null) {
-                for (ITriggerInternal t : toAdd) {
-                    if (!result.contains(t)) {
-                        result.add(t);
-                    }
-                }
-            }
+            provider.addInternalTriggers(triggers, container);
         }
 
-        return result;
+        return new ArrayList<ITriggerInternal>(triggers);
     }
 
     public static List<IActionInternal> getInternalActions(IStatementContainer container) {
-        List<IActionInternal> result = new LinkedList<IActionInternal>();
+        LinkedHashSet<IActionInternal> actions = new LinkedHashSet<IActionInternal>();
 
         for (IActionProvider provider : actionProviders) {
-            Collection<IActionInternal> toAdd = provider.getInternalActions(container);
-
-            if (toAdd != null) {
-                for (IActionInternal t : toAdd) {
-                    if (!result.contains(t)) {
-                        result.add(t);
-                    }
-                }
-            }
+            provider.addInternalActions(actions, container);
         }
 
-        return result;
+        return new ArrayList<IActionInternal>(actions);
     }
 
     public static IStatementParameter createParameter(String kind) {
