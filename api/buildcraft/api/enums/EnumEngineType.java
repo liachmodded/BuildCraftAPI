@@ -12,6 +12,8 @@ public enum EnumEngineType implements IStringSerializable {
 
     public final String resourceLocation;
 
+    public static final EnumEngineType[] VALUES = values();
+
     EnumEngineType(String mod, String loc) {
         resourceLocation = "buildcraft" + mod + ":blocks/engine/inv/" + loc + "/";
     }
@@ -23,5 +25,12 @@ public enum EnumEngineType implements IStringSerializable {
 
     public String getModelName() {
         return getName().toLowerCase(Locale.ROOT);
+    }
+
+    public static EnumEngineType fromMeta(int meta) {
+        if (meta < 0 || meta >= VALUES.length) {
+            meta = 0;
+        }
+        return VALUES[meta];
     }
 }
