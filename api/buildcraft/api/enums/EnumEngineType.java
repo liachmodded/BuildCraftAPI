@@ -1,7 +1,5 @@
 package buildcraft.api.enums;
 
-import java.util.Locale;
-
 import net.minecraft.util.IStringSerializable;
 
 public enum EnumEngineType implements IStringSerializable {
@@ -10,11 +8,13 @@ public enum EnumEngineType implements IStringSerializable {
     IRON("energy", "iron"),
     CREATIVE("energy", "creative");
 
+    public final String unlocalizedTag;
     public final String resourceLocation;
 
     public static final EnumEngineType[] VALUES = values();
 
     EnumEngineType(String mod, String loc) {
+        unlocalizedTag = loc;
         resourceLocation = "buildcraft" + mod + ":blocks/engine/inv/" + loc + "/";
     }
 
@@ -24,7 +24,7 @@ public enum EnumEngineType implements IStringSerializable {
     }
 
     public String getModelName() {
-        return getName().toLowerCase(Locale.ROOT);
+        return unlocalizedTag;
     }
 
     public static EnumEngineType fromMeta(int meta) {
