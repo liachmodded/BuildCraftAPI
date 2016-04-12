@@ -1,6 +1,6 @@
 package buildcraft.api.tiles;
 
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 
 import buildcraft.api.core.IAreaProvider;
 

@@ -6,7 +6,8 @@ package buildcraft.api.gates;
 
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumWorldBlockLayer;
+import net.minecraft.util.BlockRenderLayer;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -22,7 +23,7 @@ public interface IGateExpansion {
     void textureStitch(TextureMap map);
 
     @SideOnly(Side.CLIENT)
-    GateExpansionModelKey<?> getRenderModelKey(EnumWorldBlockLayer layer);
+    GateExpansionModelKey<?> getRenderModelKey(BlockRenderLayer layer);
 
     // FIXME : This is ugly.
     boolean canAddToGate(int numTriggerParameters, int numActionParameters);
