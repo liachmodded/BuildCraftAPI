@@ -20,7 +20,7 @@ public abstract class PluggableModelKey<K extends PluggableModelKey<K>> {
         if (baker == null) throw new NullPointerException("baker");
         this.baker = baker;
         this.side = side;
-        /* Don't inclue the block layer in the hash code as there are different caches for cutout and translucent */
+        /* Don't include the block layer in the hash code as there are different caches for cutout and translucent */
         this.hash = Arrays.hashCode(new int[] { System.identityHashCode(baker), Objects.hashCode(side) });
     }
 

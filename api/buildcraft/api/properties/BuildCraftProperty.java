@@ -3,6 +3,7 @@ package buildcraft.api.properties;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import com.google.common.base.Optional;
 
@@ -110,9 +111,9 @@ public class BuildCraftProperty<T extends Comparable<T>> extends PropertyHelper<
         } else if (value instanceof IStringSerializable) {
             return ((IStringSerializable) value).getName();
         } else if (value instanceof Enum) {
-            return ((Enum<?>) value).name();
+            return ((Enum<?>) value).name().toLowerCase(Locale.ROOT);
         } else {
-            return value.toString();
+            return value.toString().toLowerCase(Locale.ROOT);
         }
     }
 

@@ -20,10 +20,6 @@ public enum EnumEngineType implements IStringSerializable {
 
     @Override
     public String getName() {
-        return name();
-    }
-
-    public String getModelName() {
         return unlocalizedTag;
     }
 
