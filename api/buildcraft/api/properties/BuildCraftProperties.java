@@ -4,24 +4,23 @@ import java.util.Map;
 
 import com.google.common.collect.Maps;
 
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.EnumFacing;
 
-import buildcraft.api.core.EnumColor;
 import buildcraft.api.enums.*;
 
 public final class BuildCraftProperties {
     public static final BuildCraftProperty<EnumFacing> BLOCK_FACING = BuildCraftProperty.create("facing", EnumFacing.Plane.HORIZONTAL.facings());
     public static final BuildCraftProperty<EnumFacing> BLOCK_FACING_6 = BuildCraftProperty.create("facing", EnumFacing.class);
 
-    public static final BuildCraftProperty<EnumColor> BLOCK_COLOR = BuildCraftProperty.create("color", EnumColor.class);
+    public static final BuildCraftProperty<EnumDyeColor> BLOCK_COLOR = BuildCraftProperty.create("color", EnumDyeColor.class);
     public static final BuildCraftProperty<EnumSpring> SPRING_TYPE = BuildCraftProperty.create("type", EnumSpring.class);
     public static final BuildCraftProperty<EnumEngineType> ENGINE_TYPE = BuildCraftProperty.create("type", EnumEngineType.class);
     public static final BuildCraftProperty<EnumLaserTableType> LASER_TABLE_TYPE = BuildCraftProperty.create("type", EnumLaserTableType.class);
     public static final BuildCraftProperty<EnumMachineState> MACHINE_STATE = BuildCraftProperty.create("state", EnumMachineState.class);
     public static final BuildCraftProperty<EnumEnergyStage> ENERGY_STAGE = BuildCraftProperty.create("stage", EnumEnergyStage.class);
     public static final BuildCraftProperty<EnumBlueprintType> BLUEPRINT_TYPE = BuildCraftProperty.create("blueprint_type", EnumBlueprintType.class);
-    public static final BuildCraftProperty<EnumDecoratedBlock> DECORATED_BLOCK = BuildCraftProperty.create("decoration_type",
-            EnumDecoratedBlock.class);
+    public static final BuildCraftProperty<EnumDecoratedBlock> DECORATED_BLOCK = BuildCraftProperty.create("decoration_type", EnumDecoratedBlock.class);
 
     public static final BuildCraftProperty<Integer> GENERIC_PIPE_DATA = BuildCraftProperty.create("pipe_data", 0, 15);
     public static final BuildCraftProperty<Integer> LED_POWER = BuildCraftProperty.create("led_power", 0, 3);

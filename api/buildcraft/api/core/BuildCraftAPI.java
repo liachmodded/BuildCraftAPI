@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 
 public final class BuildCraftAPI {
 
-    public static ICoreProxy proxy;
+    public static IBCFakePlayer fakePlayerProvider;
 
     public static final Set<Block> softBlocks = Sets.newHashSet();
     public static final HashMap<String, IWorldProperty> worldProperties = Maps.newHashMap();
