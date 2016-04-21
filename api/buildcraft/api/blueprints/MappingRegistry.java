@@ -33,6 +33,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import buildcraft.api.core.BCLog;
 
+@Deprecated
 public class MappingRegistry {
 
     public HashMap<Block, Integer> blockToId = new HashMap<Block, Integer>();
@@ -100,7 +101,7 @@ public class MappingRegistry {
     public ResourceLocation itemIdToWorld(int id) throws MappingNotFoundException {
         Item item = getItemForId(id);
 
-        return Item.itemRegistry.getNameForObject(item);
+        return Item.REGISTRY.getNameForObject(item);
     }
 
     public Block getBlockForId(int id) throws MappingNotFoundException {
@@ -134,7 +135,7 @@ public class MappingRegistry {
     public ResourceLocation blockIdToWorld(int id) throws MappingNotFoundException {
         Block block = getBlockForId(id);
 
-        return Block.blockRegistry.getNameForObject(block);
+        return Block.REGISTRY.getNameForObject(block);
     }
 
     public Class<? extends Entity> getEntityForId(int id) throws MappingNotFoundException {
@@ -164,7 +165,7 @@ public class MappingRegistry {
         // 1.7.10 back-compat
         if (nbt.hasKey("id", Constants.NBT.TAG_SHORT)) {
             Item item = getItemForId(nbt.getShort("id"));
-            nbt.setString("id", (Item.itemRegistry.getNameForObject(item).toString()));
+            nbt.setString("id", (Item.REGISTRY.getNameForObject(item).toString()));
         }
     }
 
@@ -215,7 +216,7 @@ public class MappingRegistry {
         for (Block b : idToBlock) {
             NBTTagCompound sub = new NBTTagCompound();
             if (b != null) {
-                Object obj = Block.blockRegistry.getNameForObject(b);
+                Object obj = Block.REGISTRY.getNameForObject(b);
                 if (obj == null) {
                     BCLog.logger.error("Block " + b.getUnlocalizedName() + " (" + b.getClass().getName()
                         + ") does not have a registry name! This is a bug!");
@@ -241,7 +242,7 @@ public class MappingRegistry {
         for (Item i : idToItem) {
             NBTTagCompound sub = new NBTTagCompound();
             if (i != null) {
-                ResourceLocation obj = Item.itemRegistry.getNameForObject(i);
+                ResourceLocation obj = Item.REGISTRY.getNameForObject(i);
                 if (obj == null) {
                     BCLog.logger.error("Item " + i.getUnlocalizedName() + " (" + i.getClass().getName()
                         + ") does not have a registry name! This is a bug!");
@@ -322,15 +323,15 @@ public class MappingRegistry {
             ResourceLocation location = new ResourceLocation(name);
             Block b = null;
 
-            if (!Block.blockRegistry.containsKey(location) && name.contains(":")) {
+            if (!Block.REGISTRY.containsKey(location) && name.contains(":")) {
                 b = (Block) getMissingMappingFromFML(true, name, i);
                 if (b != null) {
-                    BCLog.logger.info("Remapped " + name + " to " + Block.blockRegistry.getNameForObject(b));
+                    BCLog.logger.info("Remapped " + name + " to " + Block.REGISTRY.getNameForObject(b));
                 }
             }
 
-            if (b == null && Block.blockRegistry.containsKey(location)) {
-                b = (Block) Block.blockRegistry.getObject(location);
+            if (b == null && Block.REGISTRY.containsKey(location)) {
+                b = (Block) Block.REGISTRY.getObject(location);
             }
 
             if (b != null) {
@@ -357,15 +358,15 @@ public class MappingRegistry {
             ResourceLocation location = new ResourceLocation(name);
             Item item = null;
 
-            if (!Item.itemRegistry.containsKey(location) && name.contains(":")) {
+            if (!Item.REGISTRY.containsKey(location) && name.contains(":")) {
                 item = (Item) getMissingMappingFromFML(false, name, i);
                 if (item != null) {
-                    BCLog.logger.info("Remapped " + name + " to " + Item.itemRegistry.getNameForObject(item));
+                    BCLog.logger.info("Remapped " + name + " to " + Item.REGISTRY.getNameForObject(item));
                 }
             }
 
-            if (item == null && Item.itemRegistry.containsKey(location)) {
-                item = (Item) Item.itemRegistry.getObject(location);
+            if (item == null && Item.REGISTRY.containsKey(location)) {
+                item = (Item) Item.REGISTRY.getObject(location);
             }
 
             if (item != null) {
@@ -408,12 +409,12 @@ public class MappingRegistry {
     public void addToCrashReport(CrashReportCategory cat) {
         cat.addCrashSection("Item Map Count", itemToId.size());
         for (Entry<Item, Integer> e : itemToId.entrySet()) {
-            cat.addCrashSection("  - ID " + e.getValue(), Item.itemRegistry.getNameForObject(e.getKey()));
+            cat.addCrashSection("  - ID " + e.getValue(), Item.REGISTRY.getNameForObject(e.getKey()));
         }
 
         cat.addCrashSection("Block Map Count", blockToId.size());
         for (Entry<Block, Integer> e : blockToId.entrySet()) {
-            cat.addCrashSection("  - ID " + e.getValue(), Block.blockRegistry.getNameForObject(e.getKey()));
+            cat.addCrashSection("  - ID " + e.getValue(), Block.REGISTRY.getNameForObject(e.getKey()));
         }
 
         cat.addCrashSection("Entity Map Count", entityToId.size());

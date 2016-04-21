@@ -124,7 +124,7 @@ public class SchematicEntity extends Schematic {
 
                 if (sub.getInteger("id") >= 0) {
                     // Maps the id in the blueprint to the id in the world
-                    sub.setInteger("id", Item.itemRegistry.getIDForObject(registry.getItemForId(sub.getInteger("id"))));
+                    sub.setInteger("id", Item.REGISTRY.getIDForObject(registry.getItemForId(sub.getInteger("id"))));
 
                     rqs.add(ItemStack.loadItemStackFromNBT(sub));
                 } else {
