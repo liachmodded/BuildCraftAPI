@@ -33,6 +33,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import buildcraft.api.core.BCLog;
 
+// Deprecated as NBT will be saved in a compressing format rather than only for blocks, items and entities.
 @Deprecated
 public class MappingRegistry {
 
