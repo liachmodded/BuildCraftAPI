@@ -28,6 +28,7 @@ public final class BuildCraftProperties {
     public static final BuildCraftProperty<Boolean> JOINED_BELOW = BuildCraftProperty.create("joined_below", false);
     public static final BuildCraftProperty<Boolean> MOVING = BuildCraftProperty.create("moving", false);
     public static final BuildCraftProperty<Boolean> LED_DONE = BuildCraftProperty.create("led_done", false);
+    public static final BuildCraftProperty<Boolean> ACTIVE = BuildCraftProperty.create("active", false);
 
     public static final BuildCraftProperty<Boolean> CONNECTED_UP = BuildCraftProperty.create("connected_up", false);
     public static final BuildCraftProperty<Boolean> CONNECTED_DOWN = BuildCraftProperty.create("connected_down", false);
