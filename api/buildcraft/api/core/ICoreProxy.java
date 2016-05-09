@@ -7,8 +7,9 @@ package buildcraft.api.core;
 import java.lang.ref.WeakReference;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.WorldServer;
 
 public interface ICoreProxy {
-    WeakReference<EntityPlayer> getBuildCraftPlayer(WorldServer world);
+    WeakReference<EntityPlayer> getBuildCraftPlayer(WorldServer world, BlockPos pos);
 }
