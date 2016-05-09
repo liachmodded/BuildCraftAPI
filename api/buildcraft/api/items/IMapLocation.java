@@ -16,7 +16,9 @@ public interface IMapLocation extends INamedItem {
         SPOT,
         AREA,
         PATH,
-        ZONE;
+        ZONE,
+        /** Like PATH but repeats around in a loop. */
+        PATH_REPEATING;
 
         public final int meta = ordinal();
 

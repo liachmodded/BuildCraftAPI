@@ -13,16 +13,17 @@ import net.minecraft.util.IStringSerializable;
 
 import io.netty.buffer.ByteBuf;
 
-public enum EnumPipePart implements IStringSerializable,INetworkLoadable_BC8<EnumPipePart> {
+public enum EnumPipePart implements IStringSerializable, INetworkLoadable_BC8<EnumPipePart> {
     DOWN(EnumFacing.DOWN),
     UP(EnumFacing.UP),
     NORTH(EnumFacing.NORTH),
     SOUTH(EnumFacing.SOUTH),
     WEST(EnumFacing.WEST),
     EAST(EnumFacing.EAST),
-    /** CENTER, UNKNOWN and ALL are all valid uses of this constant. */
+    /** CENTER, UNKNOWN and ALL are all valid uses of this. */
     CENTER(null);
 
+    public static final EnumPipePart[] VALUES = values();
     private static final Map<EnumFacing, EnumPipePart> facingMap = Maps.newEnumMap(EnumFacing.class);
     private static final Map<String, EnumPipePart> nameMap = Maps.newHashMap();
     private static final int MAX_VALUES = values().length;
