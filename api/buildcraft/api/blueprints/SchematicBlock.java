@@ -16,9 +16,10 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumFacing.Axis;
+import net.minecraft.util.Rotation;
 
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fluids.BlockFluidBase;
@@ -193,21 +194,6 @@ public class SchematicBlock extends SchematicBlockBase {
     // Pretty much all blocks (that rotate) rotate this way now
     @Override
     public void rotateLeft(IBuilderContext context) {
-        IProperty<EnumFacing> facingProp = getFacingProp();
-        if (facingProp != null) {
-            EnumFacing face = state.getValue(facingProp);
-            if (face.getAxis() == Axis.Y) return;
-            state = state.withProperty(facingProp, face.rotateY());
-        }
-    }
-
-    protected IProperty<EnumFacing> getFacingProp() {
-        Collection<IProperty> props = state.getPropertyNames();
-        for (IProperty prop : props) {
-            if ("facing".equals(prop.getName()) && state.getValue(prop) instanceof EnumFacing) {
-                return prop;
-            }
-        }
-        return null;
+        state = state.withRotation(Rotation.CLOCKWISE_90);
     }
 }

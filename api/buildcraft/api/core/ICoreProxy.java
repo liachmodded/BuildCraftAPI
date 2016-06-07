@@ -7,7 +7,7 @@ package buildcraft.api.core;
 import java.lang.ref.WeakReference;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldServer;
 
 public interface ICoreProxy {

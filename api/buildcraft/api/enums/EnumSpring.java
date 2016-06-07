@@ -8,7 +8,7 @@ import buildcraft.api.properties.BuildCraftProperties;
 
 public enum EnumSpring implements IStringSerializable {
 
-    WATER(5, -1, Blocks.water.getDefaultState()),
+    WATER(5, -1, Blocks.WATER.getDefaultState()),
     OIL(6000, 8, null); // Set in BuildCraftEnergy
     public static final EnumSpring[] VALUES = values();
     public final int tickRate, chance;
