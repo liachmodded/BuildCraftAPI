@@ -18,16 +18,16 @@ public interface IToolWrench {
      * @param pos - The coordinates for the block being wrenched
      *
      * @return true if wrenching is allowed, false if not */
-    boolean canWrench(EntityPlayer player, BlockPos pos);
+    boolean canWrench(EntityPlayer player, EnumHand hand, @Nonnull ItemStack wrench, BlockPos pos);
 
     /*** Callback after the wrench has been used. This can be used to decrease durability or for other purposes. To get
      * the ItemStack that was used, check player.inventory.getCurrentItem()
      *
      * @param player - The player doing the wrenching
      * @param pos - The position of the block being wrenched */
-    void wrenchUsed(EntityPlayer player, BlockPos pos);
+    void wrenchUsed(EntityPlayer player, EnumHand hand, @Nonnull ItemStack wrench, BlockPos pos);
 
-    boolean canWrench(EntityPlayer player, Entity entity);
+    boolean canWrench(EntityPlayer player, EnumHand hand, @Nonnull ItemStack wrench, Entity entity);
 
-    void wrenchUsed(EntityPlayer player, Entity entity);
+    void wrenchUsed(EntityPlayer player, EnumHand hand, @Nonnull ItemStack wrench, Entity entity);
 }
