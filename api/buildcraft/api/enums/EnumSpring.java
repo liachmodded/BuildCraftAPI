@@ -22,7 +22,7 @@ public enum EnumSpring implements IStringSerializable {
     }
 
     public static EnumSpring fromState(IBlockState state) {
-        return (EnumSpring) state.getValue(BuildCraftProperties.SPRING_TYPE);
+        return state.getValue(BuildCraftProperties.SPRING_TYPE);
     }
 
     @Override
