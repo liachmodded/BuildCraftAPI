@@ -3,6 +3,7 @@ package buildcraft.api.library;
 import java.util.HashSet;
 import java.util.Set;
 
+@Deprecated
 public final class LibraryAPI {
     private static final Set<LibraryTypeHandler> handlers = new HashSet<LibraryTypeHandler>();
 
