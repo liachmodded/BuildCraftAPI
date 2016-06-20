@@ -11,6 +11,8 @@ public enum EnumDecoratedBlock implements IStringSerializable {
     PAPER(10),
     LEATHER(10);
 
+    public static final EnumDecoratedBlock[] VALUES = values();
+
     public final int lightValue;
 
     private EnumDecoratedBlock(int lightValue) {
@@ -20,5 +22,12 @@ public enum EnumDecoratedBlock implements IStringSerializable {
     @Override
     public String getName() {
         return name().toLowerCase(Locale.ROOT);
+    }
+
+    public static EnumDecoratedBlock fromMeta(int meta) {
+        if (meta < 0 || meta >= VALUES.length) {
+            return EnumDecoratedBlock.DESTROY;
+        }
+        return VALUES[meta];
     }
 }

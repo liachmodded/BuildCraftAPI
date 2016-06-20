@@ -19,7 +19,7 @@ public abstract class RedstoneBoardNBT<T> {
 
     public abstract String getID();
 
-    public abstract void addInformation(ItemStack stack, EntityPlayer player, List<?> list, boolean advanced);
+    public abstract void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean advanced);
 
     public abstract String getDisplayName();
 
