@@ -10,8 +10,8 @@ public final class BuilderAPI {
 
 @Deprecated    public static final int BREAK_ENERGY = 160;// rf
 @Deprecated    public static final int BUILD_ENERGY = 240;// rf
-    public static final int BREAK_POWER = 16_000;// mMj
-    public static final int BUILD_POWER = 24_000;// mMj
+    public static final long BREAK_POWER = 16_000_000;// ųMj
+    public static final long BUILD_POWER = 24_000_000;// ųMj
 
     private BuilderAPI() {}
 }
