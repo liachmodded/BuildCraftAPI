@@ -48,7 +48,6 @@ public class SchematicTile extends SchematicBlock {
             tileNBT.setInteger("x", pos.getX());
             tileNBT.setInteger("y", pos.getY());
             tileNBT.setInteger("z", pos.getZ());
-            // The minecraft server argument doesn't seem to be used...
             TileEntity tile = TileEntity.create(tileNBT);
             tile.setWorldObj(context.world());
             context.world().setTileEntity(pos, tile);

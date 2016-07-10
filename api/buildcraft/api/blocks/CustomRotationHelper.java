@@ -1,9 +1,10 @@
 package buildcraft.api.blocks;
 
-import java.util.ArrayList;
-import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -22,7 +23,7 @@ public enum CustomRotationHelper {
      * "-Dbuildcraft.api.rotation.debug.class=true" to your launch. */
     private static final boolean DEBUG = BCDebugging.shouldDebugLog("api.rotation");
 
-    private final Map<Block, List<ICustomRotationHandler>> handlers = new IdentityHashMap<>();
+    private final Map<Block, List<ICustomRotationHandler>> handlers = Maps.newIdentityHashMap();
 
     public void registerHandlerForAll(Class<? extends Block> blockClass, ICustomRotationHandler handler) {
         for (Block block : Block.REGISTRY) {
@@ -48,7 +49,7 @@ public enum CustomRotationHelper {
 
     private boolean registerHandlerInternal(Block block, ICustomRotationHandler handler) {
         if (!handlers.containsKey(block)) {
-            List<ICustomRotationHandler> forBlock = new ArrayList<>();
+            List<ICustomRotationHandler> forBlock = Lists.newArrayList();
             forBlock.add(handler);
             handlers.put(block, forBlock);
             return true;

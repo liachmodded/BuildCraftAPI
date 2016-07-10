@@ -1,11 +1,12 @@
 package buildcraft.api.blocks;
 
-import java.util.ArrayList;
-import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -28,8 +29,8 @@ public enum CustomPaintHelper {
      * "-Dbuildcraft.api.rotation.debug.class=true" to your launch. */
     private static final boolean DEBUG = BCDebugging.shouldDebugLog("api.painting");
 
-    private final Map<Block, List<ICustomPaintHandler>> handlers = new IdentityHashMap<>();
-    private final List<ICustomPaintHandler> allHandlers = new ArrayList<>();
+    private final Map<Block, List<ICustomPaintHandler>> handlers = Maps.newIdentityHashMap();
+    private final List<ICustomPaintHandler> allHandlers = Lists.newArrayList();
 
     /** Registers a handler that will be called LAST for ALL blocks, if all other paint handlers have returned PASS or
      * none are registered for that block. */
@@ -65,7 +66,7 @@ public enum CustomPaintHelper {
 
     private boolean registerHandlerInternal(Block block, ICustomPaintHandler handler) {
         if (!handlers.containsKey(block)) {
-            List<ICustomPaintHandler> forBlock = new ArrayList<>();
+            List<ICustomPaintHandler> forBlock = Lists.newArrayList();
             forBlock.add(handler);
             handlers.put(block, forBlock);
             return true;
