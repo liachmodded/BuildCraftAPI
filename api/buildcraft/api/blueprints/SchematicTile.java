@@ -4,17 +4,15 @@
  * should be located as "LICENSE.API" in the BuildCraft source code distribution. */
 package buildcraft.api.blueprints;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import buildcraft.api.core.JavaTools;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 
-import buildcraft.api.core.JavaTools;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SchematicTile extends SchematicBlock {
 
@@ -48,7 +46,7 @@ public class SchematicTile extends SchematicBlock {
             tileNBT.setInteger("x", pos.getX());
             tileNBT.setInteger("y", pos.getY());
             tileNBT.setInteger("z", pos.getZ());
-            TileEntity tile = TileEntity.create(tileNBT);
+            TileEntity tile = TileEntity.create(context.world(), tileNBT);
             tile.setWorldObj(context.world());
             context.world().setTileEntity(pos, tile);
         }
